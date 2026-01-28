@@ -1,14 +1,28 @@
 import { useState } from 'react'
 import { Sidebar } from '@/components/Sidebar'
 import { LessonView } from '@/components/LessonView'
+import { Header } from '@/components/Header'
 import { curriculum, type Lesson } from '@/data/curriculum'
+import { useProgress } from '@/hooks/useProgress'
+import { useTheme } from '@/hooks/useTheme'
 
 function App() {
   const [currentLesson, setCurrentLesson] = useState<Lesson>(curriculum[0].lessons[0])
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  
+  const progress = useProgress()
+  const { isDark, toggleTheme } = useTheme()
+
+  const handleSelectLesson = (lesson: Lesson) => {
+    setCurrentLesson(lesson)
+    progress.setCurrentLesson(lesson.id)
+  }
 
   return (
     <div className="min-h-screen flex">
+      {/* Header with theme/language toggles */}
+      <Header isDark={isDark} toggleTheme={toggleTheme} />
+
       {/* Mobile menu button */}
       <button
         onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -25,12 +39,21 @@ function App() {
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         currentLesson={currentLesson}
-        onSelectLesson={setCurrentLesson}
+        onSelectLesson={handleSelectLesson}
+        completedCount={progress.completedCount}
+        totalCount={progress.totalCount}
+        progressPercent={progress.progressPercent}
+        isLessonComplete={progress.isComplete}
       />
 
       {/* Main content */}
       <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : ''}`}>
-        <LessonView lesson={currentLesson} onNavigate={setCurrentLesson} />
+        <LessonView 
+          lesson={currentLesson} 
+          onNavigate={handleSelectLesson}
+          isComplete={progress.isComplete(currentLesson.id)}
+          onMarkComplete={progress.markComplete}
+        />
       </main>
     </div>
   )

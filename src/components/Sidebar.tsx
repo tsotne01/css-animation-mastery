@@ -1,29 +1,39 @@
+import { useTranslation } from 'react-i18next'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
-import { curriculum, totalLessons, type Lesson } from '@/data/curriculum'
+import { curriculum, type Lesson } from '@/data/curriculum'
 import { cn } from '@/lib/utils'
+import { Check } from 'lucide-react'
 
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
   currentLesson: Lesson
   onSelectLesson: (lesson: Lesson) => void
+  completedCount: number
+  totalCount: number
+  progressPercent: number
+  isLessonComplete: (lessonId: string) => boolean
 }
 
-export function Sidebar({ isOpen, onClose, currentLesson, onSelectLesson }: SidebarProps) {
-  // TODO: Track completed lessons in localStorage
-  const completedLessons = 0
-  const progressPercent = (completedLessons / totalLessons) * 100
+export function Sidebar({
+  isOpen,
+  onClose,
+  currentLesson,
+  onSelectLesson,
+  completedCount,
+  totalCount,
+  progressPercent,
+  isLessonComplete,
+}: SidebarProps) {
+  const { t } = useTranslation()
 
   return (
     <>
       {/* Backdrop for mobile */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={onClose}
-        />
+        <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={onClose} />
       )}
 
       {/* Sidebar */}
@@ -42,8 +52,8 @@ export function Sidebar({ isOpen, onClose, currentLesson, onSelectLesson }: Side
               <span className="text-2xl">🎬</span>
             </div>
             <div>
-              <h1 className="font-bold text-lg gradient-text">Animation Mastery</h1>
-              <p className="text-xs text-muted-foreground">CSS Animations Course</p>
+              <h1 className="font-bold text-lg gradient-text">{t('header.title')}</h1>
+              <p className="text-xs text-muted-foreground">{t('header.subtitle')}</p>
             </div>
           </div>
         </div>
@@ -51,8 +61,10 @@ export function Sidebar({ isOpen, onClose, currentLesson, onSelectLesson }: Side
         {/* Progress */}
         <div className="p-4 border-b border-sidebar-border">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Progress</span>
-            <span className="font-medium">{completedLessons}/{totalLessons}</span>
+            <span className="text-muted-foreground">{t('nav.progress')}</span>
+            <span className="font-medium">
+              {completedCount}/{totalCount}
+            </span>
           </div>
           <Progress value={progressPercent} className="h-2" />
         </div>
@@ -60,53 +72,83 @@ export function Sidebar({ isOpen, onClose, currentLesson, onSelectLesson }: Side
         {/* Navigation */}
         <ScrollArea className="flex-1 px-2 py-4">
           <nav className="space-y-4">
-            {curriculum.map((module) => (
-              <div key={module.id} className="space-y-1">
-                {/* Module header */}
-                <div className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-muted-foreground">
-                  <span>{module.icon}</span>
-                  <span>{module.title}</span>
-                  <Badge variant="secondary" className="ml-auto text-xs">
-                    {module.lessons.length}
-                  </Badge>
-                </div>
+            {curriculum.map((module) => {
+              const moduleCompletedCount = module.lessons.filter((l) =>
+                isLessonComplete(l.id)
+              ).length
 
-                {/* Lessons */}
-                {module.lessons.map((lesson) => (
-                  <button
-                    key={lesson.id}
-                    onClick={() => {
-                      onSelectLesson(lesson)
-                      onClose()
-                    }}
-                    className={cn(
-                      'w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all',
-                      'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
-                      currentLesson.id === lesson.id
-                        ? 'bg-primary/20 text-primary border border-primary/30'
-                        : 'text-muted-foreground'
-                    )}
-                  >
-                    <span className="text-base">{lesson.icon}</span>
-                    <span className="truncate text-left">{lesson.title}</span>
-                  </button>
-                ))}
-              </div>
-            ))}
+              return (
+                <div key={module.id} className="space-y-1">
+                  {/* Module header */}
+                  <div className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-muted-foreground">
+                    <span>{module.icon}</span>
+                    <span>{t(`modules.${module.id}`) || module.title}</span>
+                    <Badge
+                      variant={
+                        moduleCompletedCount === module.lessons.length ? 'default' : 'secondary'
+                      }
+                      className={cn(
+                        'ml-auto text-xs',
+                        moduleCompletedCount === module.lessons.length && 'bg-green-600'
+                      )}
+                    >
+                      {moduleCompletedCount}/{module.lessons.length}
+                    </Badge>
+                  </div>
+
+                  {/* Lessons */}
+                  {module.lessons.map((lesson) => {
+                    const completed = isLessonComplete(lesson.id)
+
+                    return (
+                      <button
+                        key={lesson.id}
+                        onClick={() => {
+                          onSelectLesson(lesson)
+                          onClose()
+                        }}
+                        className={cn(
+                          'w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all',
+                          'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
+                          currentLesson.id === lesson.id
+                            ? 'bg-primary/20 text-primary border border-primary/30'
+                            : 'text-muted-foreground'
+                        )}
+                      >
+                        {/* Completion indicator or icon */}
+                        {completed ? (
+                          <span className="w-5 h-5 rounded-full bg-green-600 flex items-center justify-center flex-shrink-0">
+                            <Check className="w-3 h-3 text-white" />
+                          </span>
+                        ) : (
+                          <span className="text-base">{lesson.icon}</span>
+                        )}
+                        <span className="truncate text-left">
+                          {t(`lessons.${lesson.id}.title`) || lesson.title}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              )
+            })}
           </nav>
         </ScrollArea>
 
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
           <p className="text-xs text-muted-foreground text-center">
-            Built for{' '}
-            <a href="https://10x.edu.ge" target="_blank" rel="noopener" className="text-primary hover:underline">
+            {t('header.builtFor')}{' '}
+            <a
+              href="https://10x.edu.ge"
+              target="_blank"
+              rel="noopener"
+              className="text-primary hover:underline"
+            >
               10x Academy
             </a>
           </p>
-          <p className="text-xs text-muted-foreground text-center mt-1">
-            by Kai & Tsotne
-          </p>
+          <p className="text-xs text-muted-foreground text-center mt-1">{t('header.by')}</p>
         </div>
       </aside>
     </>
