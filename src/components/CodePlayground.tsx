@@ -105,8 +105,8 @@ export function CodePlayground({
 </html>`
   }, [previewHtml])
 
-  // Generate srcdoc content
-  const [srcdoc, setSrcdoc] = useState('')
+  // Generate srcdoc content - initialize with default code immediately
+  const [srcdoc, setSrcdoc] = useState(() => generatePreviewHTML(defaultCode))
 
   // Update srcdoc when code is applied
   useEffect(() => {
@@ -114,6 +114,8 @@ export function CodePlayground({
   }, [appliedCode, generatePreviewHTML])
 
   const handleRun = () => {
+    // Force re-render by updating srcdoc directly
+    setSrcdoc(generatePreviewHTML(code))
     setAppliedCode(code)
     onCodeChange?.(code)
     

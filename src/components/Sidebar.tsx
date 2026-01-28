@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
 import { curriculum, type Lesson } from '@/data/curriculum'
@@ -70,7 +69,7 @@ export function Sidebar({
         </div>
 
         {/* Navigation */}
-        <ScrollArea className="flex-1 px-2 py-4">
+        <div className="flex-1 overflow-y-auto px-2 py-4">
           <nav className="space-y-4">
             {curriculum.map((module) => {
               const moduleCompletedCount = module.lessons.filter((l) =>
@@ -133,7 +132,7 @@ export function Sidebar({
               )
             })}
           </nav>
-        </ScrollArea>
+        </div>
 
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
