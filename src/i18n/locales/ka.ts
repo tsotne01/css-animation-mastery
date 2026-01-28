@@ -342,5 +342,195 @@ transition: transform 0.3s ease-out 0.1s;`,
 }`,
       },
     },
+
+    // Module 2: Transforms
+    'translate': {
+      title: 'translate()',
+      subtitle: 'ელემენტების გადაადგილება 2D სივრცეში',
+    },
+    'rotate': {
+      title: 'rotate()',
+      subtitle: 'ელემენტების ბრუნვა',
+    },
+    'scale': {
+      title: 'scale()',
+      subtitle: 'ელემენტების გაზრდა და შემცირება',
+    },
+    'skew': {
+      title: 'skew()',
+      subtitle: 'ელემენტების დახრა',
+    },
+    'combining-transforms': {
+      title: 'ტრანსფორმაციების კომბინირება',
+      subtitle: 'რამდენიმე ტრანსფორმაციის ერთად გამოყენება',
+    },
+    'transform-origin': {
+      title: 'transform-origin',
+      subtitle: 'საყრდენი წერტილის შეცვლა',
+    },
+    'challenge-card-flip': {
+      title: 'გამოწვევა: 3D ბარათის გადაბრუნება',
+      subtitle: 'შექმენი ბარათის გადაბრუნების ეფექტი',
+    },
+
+    // Module 3: Keyframe Animations
+    'keyframes-basics': {
+      title: '@keyframes საფუძვლები',
+      subtitle: 'საკუთარი ანიმაციების შექმნა',
+    },
+    'animation-name-duration': {
+      title: 'animation-name & duration',
+      subtitle: 'Keyframe ანიმაციების გამოყენება',
+    },
+    'animation-timing': {
+      title: 'animation-timing-function',
+      subtitle: 'Easing keyframe ანიმაციებში',
+    },
+    'animation-delay-iteration': {
+      title: 'delay & iteration-count',
+      subtitle: 'დროის განაწილება და გამეორება',
+    },
+    'animation-direction': {
+      title: 'animation-direction',
+      subtitle: 'reverse, alternate და სხვა',
+    },
+    'animation-fill-mode': {
+      title: 'animation-fill-mode',
+      subtitle: 'forwards, backwards, both',
+    },
+    'animation-play-state': {
+      title: 'animation-play-state',
+      subtitle: 'ანიმაციის შეჩერება და გაშვება',
+    },
+    'animation-shorthand': {
+      title: 'ანიმაციის შემოკლება',
+      subtitle: 'სრული animation თვისება',
+    },
+    'multi-step-keyframes': {
+      title: 'მრავალსაფეხურიანი Keyframes',
+      subtitle: '0%, 25%, 50%, 75%, 100%',
+    },
+    'challenge-bouncing-loader': {
+      title: 'გამოწვევა: ხტუნვის ჩამტვირთველი',
+      subtitle: 'შექმენი ანიმაციური ჩატვირთვის ინდიკატორი',
+    },
+
+    // Module 4: Timing Deep Dive
+    'cubic-bezier': {
+      title: 'cubic-bezier()',
+      subtitle: 'მორგებული easing მრუდები',
+    },
+    'steps': {
+      title: 'steps()',
+      subtitle: 'კადრ-კადრი ანიმაციები',
+    },
+    'easing-visualizer': {
+      title: 'Easing ვიზუალიზატორი',
+      subtitle: 'ინტერაქტიული დროის ფუნქციის მკვლევარი',
+    },
+    'challenge-typewriter': {
+      title: 'გამოწვევა: საბეჭდი მანქანის ეფექტი',
+      subtitle: 'შექმენი ბეჭდვის ანიმაცია steps()-ით',
+    },
+
+    // Module 5: Performance
+    'layout-paint-composite': {
+      title: 'განლაგება, ხატვა, კომპოზიცია',
+      subtitle: 'როგორ რენდერავს ბრაუზერი ანიმაციებს',
+    },
+    'will-change': {
+      title: 'will-change & GPU',
+      subtitle: 'ოპტიმიზაცია აპარატურული აჩქარებით',
+    },
+    'safe-properties': {
+      title: 'უსაფრთხო თვისებები',
+      subtitle: 'transform & opacity გლუვი ანიმაციებისთვის',
+    },
+    'reduced-motion': {
+      title: 'prefers-reduced-motion',
+      subtitle: 'ხელმისაწვდომი ანიმაციის პრაქტიკა',
+    },
+    'challenge-optimize': {
+      title: 'გამოწვევა: არასტაბილური ანიმაციის გამოსწორება',
+      subtitle: 'ცუდად მომუშავე ანიმაციის ოპტიმიზაცია',
+    },
+
+    // Module 6: Scroll Animations
+    'animation-timeline-intro': {
+      title: 'animation-timeline შესავალი',
+      subtitle: 'სქროლზე დაფუძნებული ანიმაციების მომავალი',
+    },
+    'scroll-function': {
+      title: 'scroll() ფუნქცია',
+      subtitle: 'ანიმაციების სქროლის პოზიციასთან დაკავშირება',
+    },
+    'view-function': {
+      title: 'view() ფუნქცია',
+      subtitle: 'ანიმაციები ელემენტის ხილვადობის მიხედვით',
+    },
+    'scroll-view-timeline': {
+      title: 'scroll-timeline & view-timeline',
+      subtitle: 'სახელობითი Timeline-ები რთული ანიმაციებისთვის',
+    },
+    'animation-range': {
+      title: 'animation-range',
+      subtitle: 'entry, exit, contain, cover',
+    },
+    'challenge-parallax': {
+      title: 'გამოწვევა: პარალაქსის ეფექტი',
+      subtitle: 'შექმენი სქროლზე დაფუძნებული პარალაქსი',
+    },
+    'challenge-reveal': {
+      title: 'გამოწვევა: სქროლზე გამოჩენა',
+      subtitle: 'ელემენტების ანიმაცია ხედში შესვლისას',
+    },
+
+    // Module 7: Advanced
+    'motion-path': {
+      title: 'მოძრაობის ბილიკი',
+      subtitle: 'offset-path & offset-distance',
+    },
+    '3d-perspective': {
+      title: '3D & პერსპექტივა',
+      subtitle: 'სიღრმის შექმნა CSS-ით',
+    },
+    'clip-path-animations': {
+      title: 'clip-path ანიმაციები',
+      subtitle: 'ამოჭრის ნიღბების ანიმაცია',
+    },
+    'filter-animations': {
+      title: 'ფილტრის ანიმაციები',
+      subtitle: 'blur, brightness და სხვა',
+    },
+    'variable-fonts': {
+      title: 'ცვლადი შრიფტების ანიმაციები',
+      subtitle: 'font-weight & font-stretch ანიმაცია',
+    },
+    'discrete-animations': {
+      title: 'დისკრეტული თვისებების ანიმაციები',
+      subtitle: 'display & visibility ანიმაცია (ახალი)',
+    },
+    'view-transitions': {
+      title: 'View Transitions API',
+      subtitle: 'გვერდის გადასვლები მარტივად',
+    },
+
+    // Module 8: Bonus Topics
+    'houdini-property': {
+      title: 'CSS Houdini @property',
+      subtitle: 'მორგებული ანიმაციადი თვისებები',
+    },
+    'color-interpolation': {
+      title: 'ფერის ინტერპოლაცია',
+      subtitle: 'oklch & color-mix ანიმაციები',
+    },
+    'orchestration': {
+      title: 'ანიმაციის ორკესტრაცია',
+      subtitle: 'საფეხურები, თანმიმდევრობა და ქორეოგრაფია',
+    },
+    'spring-physics': {
+      title: 'ზამბარის ფიზიკა CSS-ში',
+      subtitle: 'ბუნებრივი მოძრაობის მიახლოება',
+    },
   },
 }

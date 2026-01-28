@@ -342,5 +342,195 @@ transition: transform 0.3s ease-out 0.1s;`,
 }`,
       },
     },
+
+    // Module 2: Transforms
+    'translate': {
+      title: 'translate()',
+      subtitle: 'Moving elements in 2D space',
+    },
+    'rotate': {
+      title: 'rotate()',
+      subtitle: 'Spinning elements around',
+    },
+    'scale': {
+      title: 'scale()',
+      subtitle: 'Growing and shrinking elements',
+    },
+    'skew': {
+      title: 'skew()',
+      subtitle: 'Slanting elements',
+    },
+    'combining-transforms': {
+      title: 'Combining Transforms',
+      subtitle: 'Using multiple transforms together',
+    },
+    'transform-origin': {
+      title: 'transform-origin',
+      subtitle: 'Changing the pivot point',
+    },
+    'challenge-card-flip': {
+      title: 'Challenge: 3D Card Flip',
+      subtitle: 'Build a flipping card effect',
+    },
+
+    // Module 3: Keyframe Animations
+    'keyframes-basics': {
+      title: '@keyframes Basics',
+      subtitle: 'Creating custom animations',
+    },
+    'animation-name-duration': {
+      title: 'animation-name & duration',
+      subtitle: 'Applying keyframe animations',
+    },
+    'animation-timing': {
+      title: 'animation-timing-function',
+      subtitle: 'Easing in keyframe animations',
+    },
+    'animation-delay-iteration': {
+      title: 'delay & iteration-count',
+      subtitle: 'Timing and repetition',
+    },
+    'animation-direction': {
+      title: 'animation-direction',
+      subtitle: 'reverse, alternate, and more',
+    },
+    'animation-fill-mode': {
+      title: 'animation-fill-mode',
+      subtitle: 'forwards, backwards, both',
+    },
+    'animation-play-state': {
+      title: 'animation-play-state',
+      subtitle: 'Pausing and playing animations',
+    },
+    'animation-shorthand': {
+      title: 'Animation Shorthand',
+      subtitle: 'The complete animation property',
+    },
+    'multi-step-keyframes': {
+      title: 'Multi-Step Keyframes',
+      subtitle: '0%, 25%, 50%, 75%, 100%',
+    },
+    'challenge-bouncing-loader': {
+      title: 'Challenge: Bouncing Loader',
+      subtitle: 'Build an animated loading indicator',
+    },
+
+    // Module 4: Timing Deep Dive
+    'cubic-bezier': {
+      title: 'cubic-bezier()',
+      subtitle: 'Custom easing curves',
+    },
+    'steps': {
+      title: 'steps()',
+      subtitle: 'Frame-by-frame animations',
+    },
+    'easing-visualizer': {
+      title: 'Easing Visualizer',
+      subtitle: 'Interactive timing function explorer',
+    },
+    'challenge-typewriter': {
+      title: 'Challenge: Typewriter Effect',
+      subtitle: 'Build a typing animation with steps()',
+    },
+
+    // Module 5: Performance
+    'layout-paint-composite': {
+      title: 'Layout, Paint, Composite',
+      subtitle: 'How browsers render animations',
+    },
+    'will-change': {
+      title: 'will-change & GPU',
+      subtitle: 'Optimizing with hardware acceleration',
+    },
+    'safe-properties': {
+      title: 'Safe Properties',
+      subtitle: 'transform & opacity for smooth animations',
+    },
+    'reduced-motion': {
+      title: 'prefers-reduced-motion',
+      subtitle: 'Accessible animation practices',
+    },
+    'challenge-optimize': {
+      title: 'Challenge: Fix Janky Animation',
+      subtitle: 'Optimize a poorly performing animation',
+    },
+
+    // Module 6: Scroll Animations
+    'animation-timeline-intro': {
+      title: 'Introduction to animation-timeline',
+      subtitle: 'The future of scroll-driven animations',
+    },
+    'scroll-function': {
+      title: 'scroll() Function',
+      subtitle: 'Linking animations to scroll position',
+    },
+    'view-function': {
+      title: 'view() Function',
+      subtitle: 'Animations based on element visibility',
+    },
+    'scroll-view-timeline': {
+      title: 'scroll-timeline & view-timeline',
+      subtitle: 'Named timelines for complex animations',
+    },
+    'animation-range': {
+      title: 'animation-range',
+      subtitle: 'entry, exit, contain, cover',
+    },
+    'challenge-parallax': {
+      title: 'Challenge: Parallax Effect',
+      subtitle: 'Build a scroll-based parallax',
+    },
+    'challenge-reveal': {
+      title: 'Challenge: Reveal on Scroll',
+      subtitle: 'Animate elements as they enter view',
+    },
+
+    // Module 7: Advanced
+    'motion-path': {
+      title: 'Motion Path',
+      subtitle: 'offset-path & offset-distance',
+    },
+    '3d-perspective': {
+      title: '3D & Perspective',
+      subtitle: 'Creating depth with CSS',
+    },
+    'clip-path-animations': {
+      title: 'clip-path Animations',
+      subtitle: 'Animating clipping masks',
+    },
+    'filter-animations': {
+      title: 'Filter Animations',
+      subtitle: 'blur, brightness, and more',
+    },
+    'variable-fonts': {
+      title: 'Variable Font Animations',
+      subtitle: 'Animating font-weight & font-stretch',
+    },
+    'discrete-animations': {
+      title: 'Discrete Property Animations',
+      subtitle: 'Animating display & visibility (NEW)',
+    },
+    'view-transitions': {
+      title: 'View Transitions API',
+      subtitle: 'Page transitions made easy',
+    },
+
+    // Module 8: Bonus Topics
+    'houdini-property': {
+      title: 'CSS Houdini @property',
+      subtitle: 'Custom animatable properties',
+    },
+    'color-interpolation': {
+      title: 'Color Interpolation',
+      subtitle: 'oklch & color-mix animations',
+    },
+    'orchestration': {
+      title: 'Animation Orchestration',
+      subtitle: 'Stagger, sequence, and choreography',
+    },
+    'spring-physics': {
+      title: 'Spring Physics in CSS',
+      subtitle: 'Approximating natural motion',
+    },
   },
 }
