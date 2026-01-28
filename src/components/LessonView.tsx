@@ -75,7 +75,7 @@ export function LessonView({ lesson, onNavigate, isComplete, onMarkComplete }: L
     <div className="min-h-screen p-4 lg:p-8 pt-16 lg:pt-8">
       <div
         key={lesson.id}
-        className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300"
+        className="max-w-6xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300"
       >
         {/* Header */}
         <header className="space-y-4">
