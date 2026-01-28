@@ -96,10 +96,10 @@ export function LessonView({ lesson, onNavigate, isComplete, onMarkComplete }: L
             </div>
             <div className="flex-1">
               <h1 className="text-3xl font-bold gradient-text">
-                {t(`lessons.${lesson.id}.title`) || lesson.title}
+                {t(`lessons.${lesson.id}.title`, { defaultValue: lesson.title })}
               </h1>
               <p className="text-muted-foreground mt-1">
-                {t(`lessons.${lesson.id}.subtitle`) || lesson.subtitle}
+                {t(`lessons.${lesson.id}.subtitle`, { defaultValue: lesson.subtitle })}
               </p>
             </div>
           </div>
@@ -442,7 +442,7 @@ export function LessonView({ lesson, onNavigate, isComplete, onMarkComplete }: L
           {prev ? (
             <Button variant="outline" className="gap-2" onClick={() => onNavigate?.(prev)}>
               <span>←</span>
-              <span className="hidden sm:inline">{t(`lessons.${prev.id}.title`) || prev.title}</span>
+              <span className="hidden sm:inline">{t(`lessons.${prev.id}.title`, { defaultValue: prev.title })}</span>
               <span className="sm:hidden">{t('nav.previous')}</span>
             </Button>
           ) : (
@@ -453,7 +453,7 @@ export function LessonView({ lesson, onNavigate, isComplete, onMarkComplete }: L
               className="gap-2 bg-primary hover:bg-primary/90"
               onClick={() => onNavigate?.(next)}
             >
-              <span className="hidden sm:inline">{t(`lessons.${next.id}.title`) || next.title}</span>
+              <span className="hidden sm:inline">{t(`lessons.${next.id}.title`, { defaultValue: next.title })}</span>
               <span className="sm:hidden">{t('nav.next')}</span>
               <span>→</span>
             </Button>

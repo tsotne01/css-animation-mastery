@@ -123,7 +123,7 @@ export function Sidebar({
                           <span className="text-base">{lesson.icon}</span>
                         )}
                         <span className="truncate text-left">
-                          {t(`lessons.${lesson.id}.title`) || lesson.title}
+                          {t(`lessons.${lesson.id}.title`, { defaultValue: lesson.title })}
                         </span>
                       </button>
                     )
