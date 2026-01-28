@@ -105,16 +105,12 @@ export function CodePlayground({
 </html>`
   }, [previewHtml])
 
-  // Update iframe when code is applied
+  // Generate srcdoc content
+  const [srcdoc, setSrcdoc] = useState('')
+
+  // Update srcdoc when code is applied
   useEffect(() => {
-    if (iframeRef.current) {
-      const doc = iframeRef.current.contentDocument
-      if (doc) {
-        doc.open()
-        doc.write(generatePreviewHTML(appliedCode))
-        doc.close()
-      }
-    }
+    setSrcdoc(generatePreviewHTML(appliedCode))
   }, [appliedCode, generatePreviewHTML])
 
   const handleRun = () => {
@@ -221,6 +217,7 @@ export function CodePlayground({
               title="Preview"
               className="absolute inset-0 w-full h-full border-0"
               sandbox="allow-scripts"
+              srcDoc={srcdoc}
             />
           </div>
         </div>
