@@ -146,6 +146,11 @@
   border: 1px solid rgba(6, 182, 212, 0.2);
 }
 
+.light .glass {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(8, 145, 178, 0.2);
+}
+
 @utility glow-border {
   box-shadow: 0 0 20px var(--glow), inset 0 0 20px rgba(6, 182, 212, 0.05);
 }

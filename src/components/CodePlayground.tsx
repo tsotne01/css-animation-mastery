@@ -4,7 +4,7 @@ import { css } from '@codemirror/lang-css'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { RotateCcw, Play, Copy, Check } from 'lucide-react'
+import { RotateCcw, Play, Copy, Check, Maximize2, Minimize2 } from 'lucide-react'
 
 interface CodePlaygroundProps {
   defaultCode: string
@@ -25,6 +25,7 @@ export function CodePlayground({
   const [appliedCode, setAppliedCode] = useState(defaultCode)
   const [copied, setCopied] = useState(false)
   const [validation, setValidation] = useState<{ valid: boolean; message: string } | null>(null)
+  const [isFullscreen, setIsFullscreen] = useState(false)
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   // Generate the iframe content with the CSS
@@ -145,8 +146,13 @@ export function CodePlayground({
   }, [])
 
   return (
-    <Card className="overflow-hidden border-primary/20">
-      <div className="grid md:grid-cols-2 divide-x divide-border">
+    <Card className={`overflow-hidden border-primary/20 ${isFullscreen ? 'fixed inset-4 z-50 m-0' : ''}`}>
+      {/* Fullscreen backdrop */}
+      {isFullscreen && (
+        <div className="fixed inset-0 bg-black/80 -z-10" onClick={() => setIsFullscreen(false)} />
+      )}
+      
+      <div className={`grid ${isFullscreen ? 'md:grid-cols-2 h-full' : 'md:grid-cols-2'} divide-x divide-border`}>
         {/* Code Editor */}
         <div className="flex flex-col">
           <div className="flex items-center justify-between px-4 py-2 bg-[#1e1e1e] border-b border-border">
@@ -168,15 +174,23 @@ export function CodePlayground({
               >
                 <RotateCcw className="w-3 h-3" />
               </Button>
+              <Button
+                size="sm"
+                variant="ghost"
+                className="h-7 px-2 text-xs"
+                onClick={() => setIsFullscreen(!isFullscreen)}
+              >
+                {isFullscreen ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+              </Button>
             </div>
           </div>
           <CodeMirror
             value={code}
-            height={height}
+            height={isFullscreen ? 'calc(100vh - 200px)' : height}
             theme={oneDark}
             extensions={[css()]}
             onChange={(value) => setCode(value)}
-            className="text-sm"
+            className="text-sm flex-1"
             basicSetup={{
               lineNumbers: true,
               highlightActiveLineGutter: true,
@@ -199,9 +213,9 @@ export function CodePlayground({
         <div className="flex flex-col">
           <div className="flex items-center justify-between px-4 py-2 bg-card border-b border-border">
             <span className="text-sm font-medium text-muted-foreground">Preview</span>
-            <span className="text-xs text-muted-foreground">Hover over elements to test!</span>
+            <span className="text-xs text-muted-foreground hidden sm:block">Hover over elements to test!</span>
           </div>
-          <div className="relative" style={{ height: `calc(${height} + 44px)` }}>
+          <div className="relative flex-1" style={{ minHeight: isFullscreen ? 'auto' : `calc(${height} + 44px)` }}>
             <iframe
               ref={iframeRef}
               title="Preview"

@@ -416,8 +416,8 @@ export function LessonView({ lesson, onNavigate, isComplete, onMarkComplete }: L
           />
         </div>
 
-        {/* Easing Visualizer for timing function lesson */}
-        {lesson.id === 'timing-function' && (
+        {/* Easing Visualizer for timing function and easing-visualizer lessons */}
+        {(lesson.id === 'timing-function' || lesson.id === 'easing-visualizer') && (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-300 delay-300 fill-mode-both">
             <EasingVisualizer />
           </div>
