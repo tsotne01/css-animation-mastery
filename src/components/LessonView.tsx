@@ -5,14 +5,15 @@ import { type Lesson, getAdjacentLessons, curriculum } from '@/data/curriculum'
 
 interface LessonViewProps {
   lesson: Lesson
+  onNavigate?: (lesson: Lesson) => void
 }
 
-export function LessonView({ lesson }: LessonViewProps) {
+export function LessonView({ lesson, onNavigate }: LessonViewProps) {
   const { prev, next } = getAdjacentLessons(lesson.id)
   const module = curriculum.find(m => m.id === lesson.module)
 
   return (
-    <div className="min-h-screen p-4 lg:p-8">
+    <div className="min-h-screen p-4 lg:p-8" key={lesson.id}>
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <header className="space-y-4 animate-slide-in">
@@ -93,7 +94,7 @@ export function LessonView({ lesson }: LessonViewProps) {
         {/* Navigation */}
         <div className="flex justify-between pt-4">
           {prev ? (
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2" onClick={() => onNavigate?.(prev)}>
               <span>←</span>
               <span className="hidden sm:inline">{prev.title}</span>
               <span className="sm:hidden">Previous</span>
@@ -102,7 +103,7 @@ export function LessonView({ lesson }: LessonViewProps) {
             <div />
           )}
           {next ? (
-            <Button className="gap-2 bg-primary hover:bg-primary/90">
+            <Button className="gap-2 bg-primary hover:bg-primary/90" onClick={() => onNavigate?.(next)}>
               <span className="hidden sm:inline">{next.title}</span>
               <span className="sm:hidden">Next</span>
               <span>→</span>
