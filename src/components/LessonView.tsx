@@ -13,10 +13,10 @@ export function LessonView({ lesson, onNavigate }: LessonViewProps) {
   const module = curriculum.find(m => m.id === lesson.module)
 
   return (
-    <div className="min-h-screen p-4 lg:p-8" key={lesson.id}>
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="min-h-screen p-4 lg:p-8">
+      <div key={lesson.id} className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
         {/* Header */}
-        <header className="space-y-4 animate-slide-in">
+        <header className="space-y-4">
           <div className="flex items-center gap-2">
             <Badge variant="secondary" className="text-xs">
               {module?.icon} {module?.title}
@@ -34,7 +34,7 @@ export function LessonView({ lesson, onNavigate }: LessonViewProps) {
         </header>
 
         {/* Placeholder content */}
-        <Card className="glass border-primary/20">
+        <Card className="glass border-primary/20 animate-in fade-in slide-in-from-bottom-4 duration-300 delay-100 fill-mode-both">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <span>📚</span>
@@ -62,7 +62,7 @@ export function LessonView({ lesson, onNavigate }: LessonViewProps) {
         </Card>
 
         {/* Interactive Playground placeholder */}
-        <Card className="border-accent/30">
+        <Card className="border-accent/30 animate-in fade-in slide-in-from-bottom-4 duration-300 delay-200 fill-mode-both">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <span>🎮</span>
@@ -92,7 +92,7 @@ export function LessonView({ lesson, onNavigate }: LessonViewProps) {
         </Card>
 
         {/* Navigation */}
-        <div className="flex justify-between pt-4">
+        <div className="flex justify-between pt-4 animate-in fade-in duration-300 delay-300 fill-mode-both">
           {prev ? (
             <Button variant="outline" className="gap-2" onClick={() => onNavigate?.(prev)}>
               <span>←</span>
