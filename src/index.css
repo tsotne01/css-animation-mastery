@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Animation Mastery - Custom Cyan Theme */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom colors */
+  --color-glow: var(--glow);
+  --color-glow-strong: var(--glow-strong);
+}
+
+:root {
+  --radius: 0.625rem;
+  
+  /* Dark theme by default - Cyan/Teal Animation Theme */
+  --background: #0a0f1a;
+  --foreground: #f0f6fc;
+  --card: #111827;
+  --card-foreground: #f0f6fc;
+  --popover: #111827;
+  --popover-foreground: #f0f6fc;
+  --primary: #06b6d4;
+  --primary-foreground: #0a0f1a;
+  --secondary: #1e293b;
+  --secondary-foreground: #f0f6fc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #0891b2;
+  --accent-foreground: #f0f6fc;
+  --destructive: #ef4444;
+  --border: #1e3a5f;
+  --input: #1e3a5f;
+  --ring: #06b6d4;
+  
+  /* Sidebar */
+  --sidebar: #0d1424;
+  --sidebar-foreground: #f0f6fc;
+  --sidebar-primary: #06b6d4;
+  --sidebar-primary-foreground: #0a0f1a;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f0f6fc;
+  --sidebar-border: #1e3a5f;
+  --sidebar-ring: #06b6d4;
+  
+  /* Glow effects */
+  --glow: rgba(6, 182, 212, 0.4);
+  --glow-strong: rgba(6, 182, 212, 0.6);
+}
+
+/* Fonts */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom utilities */
+@utility gradient-text {
+  background: linear-gradient(135deg, #06b6d4, #0891b2, #0e7490);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility glass {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+@utility glow-border {
+  box-shadow: 0 0 20px var(--glow), inset 0 0 20px rgba(6, 182, 212, 0.05);
+}
+
+@utility animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@utility animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@utility animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Keyframe animations */
+@keyframes glow {
+  from { box-shadow: 0 0 10px var(--glow); }
+  to { box-shadow: 0 0 25px var(--glow-strong); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Code block styling */
+pre, code {
+  font-family: var(--font-mono);
+}
+
+code:not(pre code) {
+  background: var(--secondary);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  color: #06b6d4;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Selection */
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
